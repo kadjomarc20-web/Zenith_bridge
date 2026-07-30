@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@custom-variant dark (.dark &);
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  /* 1. Tes écrans personnalisés (Media Queries complexes) */
+  --breakpoint-widescreen: (min-aspect-ratio: 3/2);
+  --breakpoint-tallscreen: (min-aspect-ratio: 13/20);
+
+  --animate-open-menu: open-menu 0.3s ease-out forwards;
+  --animate-close-menu: close-menu 0.3s ease-out forwards;
+
+  @keyframes open-menu {
+    0% { transform: scaleY(0); }
+    80% { transform: scaleY(1.2); }
+    100% { transform: scaleY(1); }
+  }
+  @keyframes close-menu {
+    0% { transform: scaleY(1); }
+    20% { transform: scaleY(1.2); }
+    100% { transform: scaleY(0); }
+  }
+}
+
+/* 2. Crée tes classes ou utilitaires en dehors de @theme si tu en as besoin */
+@utility animate-open-menu {
+  animation: var(--animate-open-menu);
+  transform-origin: top;
+}
+
+@utility animate-close-menu {
+  animation: var(--animate-close-menu);
+  transform-origin: top;
+
+}
+@utility section-min-height {
+  min-height: calc(100vh - 68px);
+}
+
+/* 2. Remplacement du bouton toggle (transformation en icône "X") */
+@utility toggle-btn {
+  & > div {
+    background-color: transparent !important;
+    rotate: 720deg !important; /* Utilise la propriété indépendante 'rotate' */
+
+   &::before {
+      /* On garde le décalage X du HTML, mais on force Y à 0 */
+      translate: var(--tw-translate-x) 0px !important; 
+      rotate: 45deg !important;
+    }
+
+    &::after {
+      /* On garde le décalage X du HTML, mais on force Y à 0 */
+      translate: var(--tw-translate-x) 0px !important; 
+      rotate: -45deg !important;
+    }
+  }
+}
+
+/* État initial : masqué, opaque à 0 et déplacé de 50px vers le bas */
+@utility reveal-init {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+/* État actif : l'élément reprend sa place et devient visible */
+@utility reveal-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+
+/*visibilité*/
+
+@utility reveal-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Classes de délais pour l'effet un par un */
+@utility delay-100 { transition-delay: 100ms; }
+@utility delay-300 { transition-delay: 300ms; }
+@utility delay-500 { transition-delay: 500ms; }
+
+/* État final quand le parent devient visible */
+.reveal-init.reveal-active .reveal-item {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
