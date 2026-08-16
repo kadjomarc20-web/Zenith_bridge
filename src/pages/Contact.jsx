@@ -4,6 +4,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { sendViaFormspree } from '../services/ContactService';
 import toast, { Toaster } from 'react-hot-toast';
 
+const CONTACT_NUMBER = "tel:+2250140097885"
+const WHATSAPP_NUMBER = "https://wa.me/8615710052793";
+
+
 export default function Contact() {
     useScrollReveal();
   
@@ -100,12 +104,12 @@ export default function Contact() {
                 <div className="text-slate-600 space-y-2 flex flex-col dark:text-gray-300">
                     
                     {/* Lien Téléphone */}
-                    <a href="tel:+2250101030363" className="hover:text-blue-400 transition flex items-center gap-1">
+                    <a href={CONTACT_NUMBER} className="hover:text-blue-400 transition flex items-center gap-1">
                     📞 Téléphone : +225 01 40 09 78 85
                     </a>
                     
                     {/* Lien WhatsApp */}
-                    <a href="https://wa.me/8615710052793" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 transition flex items-center gap-1">
+                    <a href={WHATSAPP_NUMBER} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 transition flex items-center gap-1">
                     💬 WhatsApp : +86 157 1005 2793
                     </a>
                     
