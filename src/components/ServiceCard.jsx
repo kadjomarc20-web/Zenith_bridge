@@ -29,12 +29,12 @@ function ServiceCard({ service, index = 0 }) {
       </div>
 
       {/* Pied de carte / Lien d'action */}
-      <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">
+      {/* <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">
         <span>En savoir plus</span>
         <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
-      </div>
+      </div> */}
     </div>
   );
 }

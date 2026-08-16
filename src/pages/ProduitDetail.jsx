@@ -11,7 +11,7 @@ function ProduitDetail() {
 
   // Numéro WhatsApp des frérots (Format international sans + ni espaces)
   // Ex: 2250700000000 pour la Côte d'Ivoire
-  const whatsappNumber = "2250000000000"; 
+  const whatsappNumber = "8615710052793"; 
 
   if (!p) {
     return (
@@ -66,7 +66,7 @@ function ProduitDetail() {
           
           {/* Image du produit */}
           <div className="overflow-hidden rounded-2xl bg-slate-100 shadow-lg dark:bg-gray-800 flex items-center justify-center">
-            <img src={p.image} alt={p.nom} className="w-full h-96 object-cover" />
+            <img src={p.image} alt={p.nom} className="w-full h-130 object-cover" />
           </div>
 
           {/* Informations produit */}

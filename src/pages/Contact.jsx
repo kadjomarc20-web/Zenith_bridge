@@ -141,7 +141,7 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Ex: utilisateur@email.com" 
+              placeholder="Ex: franckkouame@gmail.com" 
               className="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 bg-slate-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
               required 
             />
