@@ -666,7 +666,7 @@ export const produits = [
     sousCategorie: "sneakers"
   },
   {
-    id: 72,
+    id: 73,
     nom: "Adidas Samba blue",
     description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
     prix: "80 000 FCFA",
@@ -675,7 +675,7 @@ export const produits = [
     sousCategorie: "sneakers"
   },
    {
-    id: 72,
+    id: 74,
     nom: "Adidas Samba pink",
     description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
     prix: "80 000 FCFA",
@@ -684,7 +684,7 @@ export const produits = [
     sousCategorie: "sneakers"
   },
    {
-    id: 72,
+    id: 75,
     nom: "Oasis",
     description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
     prix: "80 000 FCFA",
@@ -693,7 +693,7 @@ export const produits = [
     sousCategorie: "sneakers"
   },
     {
-    id: 72,
+    id: 76,
     nom: "New Balance 350",
     description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
     prix: "80 000 FCFA",
