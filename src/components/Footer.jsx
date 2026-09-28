@@ -20,7 +20,7 @@ export default function Footer() {
             <li key={item.path}>
               <Link
                 to={item.path}
-                className="inline-block hover:text-blue-400 hover:scale-110 transform transition-all duration-300 ease-in-out"
+                className="inline-block hover:text-blue-500 hover:scale-110 transform transition-all duration-300 ease-in-out"
               >
                 {item.name}
               </Link>

@@ -135,12 +135,23 @@ export const produits = [
 
   // --- TÉLÉPHONES ---
   {
+    id: 57,
+    nom: "iPhone 15",
+    description: "Smartphone Apple haut de gamme, neuf sous scellé.",
+    prix: "350 000 FCFA",
+    image: "/image/iphone_15.jpg",
+    categorie: "telephone",
+    sousCategorie: "iphone"
+  },
+
+  
+  {
     id: 15,
-    nom: "iPhone 15 Pro 256GB",
-    description: "Smartphone Apple haut de gamme, neuf sous scellé avec garantie.",
-    prix: "750 000 FCFA",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
-    categorie: "ac",
+    nom: "iPhone 15 Pro",
+    description: "Smartphone Apple haut de gamme, neuf sous scellé.",
+    prix: "400 000 FCFA",
+    image: "/image/iphone_15_pro.jpg",
+    categorie: "telephone",
     sousCategorie: "iphone"
   },
   {
@@ -167,37 +178,55 @@ export const produits = [
   // --- CHAUSSURES ---
   {
     id: 18,
-    nom: "Sneakers Urban White",
-    description: "Baskets blanches au design moderne, légères et très confortables.",
+    nom: "AF1 white",
+    description: "La Sneakers par reference, un grand classique",
     prix: "20 000 FCFA",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
+    image: "/image/af1_wh.jpg",
     categorie: "chaussure",
     sousCategorie: "sneakers"
   },
   {
     id: 19,
-    nom: "Mocassin Cuir Premium",
-    description: "Chaussure de ville en cuir véritable avec finition à la main.",
+    nom: "AF1 black",
+    description: "La Sneakers par reference, un grand classique.",
     prix: "28 000 FCFA",
-    image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&auto=format&fit=crop&q=80",
+    image: "/image/af1_blk.jpg",
     categorie: "chaussure",
-    sousCategorie: "ville"
+    sousCategorie: "sneakers"
   },
   {
     id: 20,
-    nom: "iPhone 16 256GB",
+    nom: "iPhone 16",
     description: "Smartphone Apple haut de gamme, neuf sous scellé avec garantie.",
-    prix: "6à0 000 FCFA",
+    prix: "500 000 FCFA",
     image: "/image/iphone_16.jpg",
+    categorie: "telephone",
+    sousCategorie: "iphone"
+  },
+   {
+    id: 58,
+    nom: "iPhone 16 pro",
+    description: "Smartphone Apple haut de gamme, neuf sous scellé.",
+    prix: "600 000 FCFA",
+    image: "/image/iphone_16_pro.jpg",
     categorie: "telephone",
     sousCategorie: "iphone"
   },
   {
     id: 21,
-    nom: "iPhone 17 256GB",
+    nom: "iPhone 17",
     description: "Smartphone Apple haut de gamme, neuf sous scellé avec garantie.",
     prix: "600 000 FCFA",
     image: "/image/iphone_17.webp",
+    categorie: "telephone",
+    sousCategorie: "iphone"
+  },
+   {
+    id: 59,
+    nom: "iPhone 17 pro",
+    description: "Smartphone Apple haut de gamme, neuf sous scellé.",
+    prix: "750 000 FCFA",
+    image: "/image/iphone_17_pro.jpg",
     categorie: "telephone",
     sousCategorie: "iphone"
   },
@@ -518,6 +547,159 @@ export const produits = [
     image: "/image/mixeur_2.jpg",
     categorie: "electromenager",
     sousCategorie: "mixeur"
+  },
+  {
+    id: 60,
+    nom: "iPhone 14 pro",
+    description: "Smartphone Apple haut de gamme, neuf sous scellé.",
+    prix: "750 000 FCFA",
+    image: "/image/iphone_14_pro.jpg",
+    categorie: "telephone",
+    sousCategorie: "iphone"
+  },
+  {
+    id: 61,
+    nom: "Puma Xl black",
+    description: "Chaussure de ville en cuir véritable avec finition à la main.",
+    prix: "80 000 FCFA",
+    image: "/image/puma_xl_black.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 62,
+    nom: "Puma Xl red",
+    description: "Chaussure de ville en cuir véritable avec finition à la main.",
+    prix: "80 000 FCFA",
+    image: "/image/puma_xl_red.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 63,
+    nom: "Puma Xl blue",
+    description: "Chaussure de ville en cuir véritable avec finition à la main.",
+    prix: "80 000 FCFA",
+    image: "/image/puma_xl_blue.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 64,
+    nom: "Vans Knu Black & White",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/vans_knu_blk_wh.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+    {
+    id: 65,
+    nom: "Vans Knu Black & White & Blue",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/vans_knu_blk_wh_blue.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+    {
+    id: 66,
+    nom: "Vans Knu Black & White & Red",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/vans_knu_blk_wh_red.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+    {
+    id: 67,
+    nom: "Vans Knu Gray & White",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/vans_knu_gray_wh.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+    {
+    id: 68,
+    nom: "Adidas Campus black",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_campus_full_blk.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 69,
+    nom: "Adidas Campus black & White",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_campus_blk_white.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 70,
+    nom: "Adidas Campus black",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_campus_full_blk.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 71,
+    nom: "Adidas Campus gray",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_campus_gray_white.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 72,
+    nom: "Adidas Campus green",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_campus_green_white.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+  {
+    id: 72,
+    nom: "Adidas Samba blue",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_samba_blue_white.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+   {
+    id: 72,
+    nom: "Adidas Samba pink",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/adidas_samba_pink_white.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+   {
+    id: 72,
+    nom: "Oasis",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/oasis_bl_wh.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
+  },
+    {
+    id: 72,
+    nom: "New Balance 350",
+    description: "Sneakers pour plus de style. Elle vous donne un air de Streetwear.",
+    prix: "80 000 FCFA",
+    image: "/image/new_balance_350_wh.jpg",
+    categorie: "chaussure",
+    sousCategorie: "sneakers"
   },
 
 ];

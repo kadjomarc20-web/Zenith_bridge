@@ -23,7 +23,7 @@ function Home() {
           <div className="pt-2">
             <Link 
               to="/contact" 
-              className="inline-block text-center bg-blue-500 text-white px-6 py-3 w-full sm:w-auto rounded-xl font-semibold hover:bg-blue-700 transition shadow-md hover:cursor-pointer hover:scale-105"
+              className="inline-block text-center transform transition-all duration-500 ease-in-out bg-blue-500 text-white px-6 py-3 w-full sm:w-auto rounded-xl font-semibold hover:bg-blue-700 shadow-md hover:cursor-pointer hover:scale-105"
             >
               Nous contacter
             </Link>
