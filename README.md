@@ -14,3 +14,8 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Documentation du projet
+
+- [`docs/FONCTIONNALITES.md`](docs/FONCTIONNALITES.md) — ce que fait le site, page par page, et où trouver le code.
+- [`docs/APPRENDRE_GSAP.md`](docs/APPRENDRE_GSAP.md) — guide pour apprendre le motion design GSAP à partir du code du site.

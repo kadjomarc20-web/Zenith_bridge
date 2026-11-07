@@ -1,17 +1,31 @@
+import { useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { MessageCircle, ArrowLeft, Plane, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Plane, ShieldCheck } from 'lucide-react';
 import { produits } from '../data/produits';
 import WhatsappIcon from '../components/social/meta.jsx';
+import { whatsappLink } from '../config/contact.js';
+import { useMagnetic } from '../hooks/useMagnetic.js';
+import { gsap, useGSAP, MOTION } from '../lib/gsap.js';
 
 function ProduitDetail() {
   const { id } = useParams();
-  
+  const scope = useRef(null);
+  const buyBtn = useRef(null);
+  useMagnetic(buyBtn, 0.2);
+
   // Comparaison sécurisée (convertit les deux côtés en string)
   const p = produits.find((item) => String(item.id) === String(id));
 
-  // Numéro WhatsApp des frérots (Format international sans + ni espaces)
-  // Ex: 2250700000000 pour la Côte d'Ivoire
-  const whatsappNumber = "8615710052793"; 
+  useGSAP(() => {
+    if (!p) return;
+    gsap.matchMedia().add(MOTION, () => {
+      const tl = gsap.timeline();
+      tl.from('[data-detail-img]', { scale: 1.25, autoAlpha: 0, duration: 1.1, ease: 'expo.out' })
+        .from('[data-detail-in]', { x: 40, autoAlpha: 0, stagger: 0.1 }, '-=0.8')
+        // Petite pulsation pour attirer l'œil sur le bouton de commande, 2 fois.
+        .to(buyBtn.current, { scale: 1.04, duration: 0.35, repeat: 3, yoyo: true, ease: 'sine.inOut' }, '+=0.2');
+    });
+  }, { scope, dependencies: [id] });
 
   if (!p) {
     return (
@@ -31,14 +45,13 @@ function ProduitDetail() {
     );
   }
 
-  // Génération du lien WhatsApp personnalisé avec le nom du produit
-  const messageWhatsApp = encodeURIComponent(
+  // Lien WhatsApp personnalisé avec le nom du produit (encodage géré par whatsappLink).
+  const whatsappUrl = whatsappLink(
     `Bonjour ! Je suis intéressé(e) par le produit "${p.nom}". Pouvez-vous me donner plus d'informations sur la disponibilité et la livraison ?`
   );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${messageWhatsApp}`;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-6 sm:py-10 dark:bg-black">
+    <div ref={scope} className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-6 sm:py-10 dark:bg-black">
       <div className="w-full max-w-6xl rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl md:p-8 dark:bg-gray-900 dark:border-gray-700">
         
         {/* En-tête de la page */}
@@ -66,13 +79,13 @@ function ProduitDetail() {
           
           {/* Image du produit */}
           <div className="overflow-hidden rounded-2xl bg-slate-100 shadow-lg dark:bg-gray-800 flex items-center justify-center">
-            <img src={p.image} alt={p.nom} className="w-full h-130 object-cover" />
+            <img data-detail-img src={p.image} alt={p.nom} className="w-full h-130 object-cover" />
           </div>
 
           {/* Informations produit */}
           <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div className="space-y-4">
-              <div className="flex items-center justify-between gap-4">
+              <div data-detail-in className="flex items-center justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{p.nom}</h2>
                   <p className="text-sm font-medium uppercase tracking-[0.24em] text-blue-600 dark:text-blue-400">
@@ -82,7 +95,7 @@ function ProduitDetail() {
                 
               </div>
 
-              <div className="space-y-3 pt-2">
+              <div data-detail-in className="space-y-3 pt-2">
                 <p className="text-slate-600 leading-7 dark:text-gray-300">{p.description}</p>
                 <p className="text-sm text-slate-500 dark:text-gray-400">
                   Article vérifié en usine avant expédition. Qualité garantie pour vos achats en gros ou au détail.
@@ -90,7 +103,7 @@ function ProduitDetail() {
               </div>
 
               {/* Cartes d'informations Logistique */}
-              <div className="grid gap-3 sm:grid-cols-2 pt-2">
+              <div data-detail-in className="grid gap-3 sm:grid-cols-2 pt-2">
                 <div className="rounded-xl border border-slate-200 bg-white p-3 text-xs text-slate-600 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 flex items-start gap-2">
                   <Plane className="text-blue-500 shrink-0 mt-0.5" size={18} />
                   <div>
@@ -111,6 +124,7 @@ function ProduitDetail() {
 
             {/* Bouton de commande WhatsApp */}
             <a
+              ref={buyBtn}
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"

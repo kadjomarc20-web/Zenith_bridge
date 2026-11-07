@@ -1,7 +1,7 @@
 // Tu peux placer ce composant en haut de ton fichier ou dans un fichier séparé
 export default function WhatsappIcon({ className = "w-5 h-5" }) {
   return (
-    <svg 
+    <svg aria-hidden="true"
       className={className} 
       fill="currentColor" 
       viewBox="0 0 24 24"
