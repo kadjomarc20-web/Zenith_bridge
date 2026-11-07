@@ -4,6 +4,7 @@ import ContactPage from './pages/Contact.jsx';
 import ProduitPage from './pages/Produit.jsx';
 import ServicePage from './pages/Service.jsx';
 import ProduitDetailPage from './pages/ProduitDetail.jsx';
+import NotFoundPage from './pages/NotFound.jsx';
 
 export const appRoutes = [
   { path: '/', element: <HomePage /> },
@@ -13,6 +14,7 @@ export const appRoutes = [
   { path: '/produit/:categorie', element: <ProduitPage /> },
   { path: '/produit/:categorie/:souscategorie', element: <ProduitPage /> },
   { path: '/produit/:categorie/:souscategorie/detail/:id', element: <ProduitDetailPage /> },
+  { path: '*', element: <NotFoundPage /> }, // toute URL inconnue → 404
 ];
 
 export function renderRoutes() {

@@ -1,28 +1,21 @@
 // src/contexts/ThemeContext.jsx
+import { useState, useEffect } from 'react';
+import { ThemeContext } from './theme-context.js';
 
-import { createContext, useState, useEffect } from 'react';
+// localStorage peut être bloqué (navigation privée) : on protège lecture et écriture.
+function readTheme() {
+  try { return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'; } catch { return 'light'; }
+}
 
-export const ThemeContext = createContext();
-
-// On ajoute 'default' ici :
 export default function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
-  });
+  const [theme, setTheme] = useState(readTheme);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    try { localStorage.setItem('theme', theme); } catch { /* ignoré */ }
   }, [theme]);
 
-  const handleThemeSwitch = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
-  };
+  const handleThemeSwitch = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
 
   return (
     <ThemeContext.Provider value={{ theme, handleThemeSwitch }}>

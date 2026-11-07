@@ -10,32 +10,8 @@
   --breakpoint-widescreen: (min-aspect-ratio: 3/2);
   --breakpoint-tallscreen: (min-aspect-ratio: 13/20);
 
-  --animate-open-menu: open-menu 0.3s ease-out forwards;
-  --animate-close-menu: close-menu 0.3s ease-out forwards;
-
-  @keyframes open-menu {
-    0% { transform: scaleY(0); }
-    80% { transform: scaleY(1.2); }
-    100% { transform: scaleY(1); }
-  }
-  @keyframes close-menu {
-    0% { transform: scaleY(1); }
-    20% { transform: scaleY(1.2); }
-    100% { transform: scaleY(0); }
-  }
 }
 
-/* 2. Crée tes classes ou utilitaires en dehors de @theme si tu en as besoin */
-@utility animate-open-menu {
-  animation: var(--animate-open-menu);
-  transform-origin: top;
-}
-
-@utility animate-close-menu {
-  animation: var(--animate-close-menu);
-  transform-origin: top;
-
-}
 @utility section-min-height {
   min-height: calc(100vh - 68px);
 }
@@ -60,36 +36,6 @@
   }
 }
 
-/* État initial : masqué, opaque à 0 et déplacé de 50px vers le bas */
-@utility reveal-init {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
-}
-
-/* État actif : l'élément reprend sa place et devient visible */
-@utility reveal-active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-
-/*visibilité*/
-
-@utility reveal-item {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* Classes de délais pour l'effet un par un */
-@utility delay-100 { transition-delay: 100ms; }
-@utility delay-300 { transition-delay: 300ms; }
-@utility delay-500 { transition-delay: 500ms; }
-
-/* État final quand le parent devient visible */
-.reveal-init.reveal-active .reveal-item {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
+/* Les animations d'apparition sont gérées par GSAP (src/hooks/useReveal.js).
+   Aucune classe CSS ne masque le contenu : sans JavaScript, tout reste visible. */
 
