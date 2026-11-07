@@ -187,23 +187,8 @@ Avant, le site contenait **3 numéros WhatsApp différents** répartis dans
 
 1. **Activer la protection anti-spam dans le tableau de bord Formspree**
    (reCAPTCHA ou équivalent), en complément du honeypot.
-2. **Ajouter des en-têtes de sécurité chez ton hébergeur.** Ils ne se règlent pas
-   dans le code React. Exemple pour **Netlify**, dans un fichier `public/_headers` :
-
-   ```
-   /*
-     X-Frame-Options: DENY
-     X-Content-Type-Options: nosniff
-     Referrer-Policy: strict-origin-when-cross-origin
-     Permissions-Policy: camera=(), microphone=(), geolocation=()
-     Content-Security-Policy: default-src 'self'; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://formspree.io; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none'
-   ```
-
-   Sur **Vercel**, la même chose se met dans `vercel.json` (clé `headers`).
-   Dis-moi ton hébergeur et je l'ajoute.
-3. **Redirection SPA** : sur Netlify, ajoute `public/_redirects` avec la ligne
-   `/* /index.html 200`. Sinon, recharger `/produit/vetement` peut donner une
-   erreur 404 de l'hébergeur.
+2. ✅ **En-têtes de sécurité et redirection : faits dans `vercel.json`** (voir section 10).
+3. Après le déploiement, teste ton site sur <https://securityheaders.com> pour vérifier les en-têtes.
 4. **4 failles « modérées »** restent dans **ESLint**, un outil de développement
    qui n'est pas envoyé aux visiteurs. Les corriger obligerait à revenir à ESLint 9 ;
    il vaut mieux attendre une mise à jour d'ESLint 10.
@@ -213,7 +198,49 @@ Avant, le site contenait **3 numéros WhatsApp différents** répartis dans
 
 ---
 
-## 10. Poids ajouté par GSAP
+## 10. Configuration Vercel — `vercel.json`
+
+Vercel lit ce fichier à chaque déploiement. Il fait deux choses.
+
+### a) Redirection SPA (« rewrite »)
+
+```json
+"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+```
+
+Le site est une **SPA** (Single Page Application) : il n'existe qu'un seul vrai
+fichier, `index.html`, et c'est React Router qui affiche la bonne page.
+Sans cette règle, recharger `/produit/vetement` demande à Vercel un fichier
+`produit/vetement` qui n'existe pas → **erreur 404**. La règle renvoie
+`index.html` pour toute adresse ; Vercel sert quand même en priorité les vrais
+fichiers (images, JS, CSS).
+
+### b) En-têtes de sécurité
+
+| En-tête | Protège contre |
+|---|---|
+| `Content-Security-Policy` | Injection de scripts (XSS) : le navigateur n'exécute que les scripts **du site**, n'affiche que les images du site et d'Unsplash, et n'envoie des données qu'à Formspree. |
+| `X-Frame-Options: DENY` + `frame-ancestors 'none'` | Le *clickjacking* : personne ne peut afficher ton site dans une fenêtre cachée sur un autre site. |
+| `X-Content-Type-Options: nosniff` | Le navigateur ne « devine » pas le type d'un fichier (un faux .jpg ne peut pas devenir un script). |
+| `Referrer-Policy` | Les adresses complètes de tes pages ne fuient pas vers les autres sites. |
+| `Permissions-Policy` | Caméra, micro, géolocalisation et paiement sont désactivés : le site n'en a pas besoin. |
+| `Strict-Transport-Security` | Force le HTTPS pendant 2 ans. |
+| `Cross-Origin-Opener-Policy` | Isole ton onglet des fenêtres ouvertes par d'autres sites. |
+| `Cache-Control` sur `/assets/` | Les fichiers JS/CSS (dont le nom change à chaque build) sont gardés en cache 1 an : visites suivantes quasi instantanées. |
+
+> ⚠️ **Si tu ajoutes un service externe** (Google Analytics, polices Google,
+> images hébergées ailleurs, vidéo YouTube intégrée…), il faut l'autoriser dans
+> la `Content-Security-Policy`, sinon le navigateur le bloquera. Exemple pour
+> des images Cloudinary : ajouter `https://res.cloudinary.com` après
+> `img-src 'self' data: https://images.unsplash.com`. Les erreurs CSP
+> apparaissent dans la console du navigateur (F12).
+
+Cette configuration a été testée dans un navigateur : aucune ressource bloquée,
+animations, formulaire et notifications fonctionnels.
+
+---
+
+## 11. Poids ajouté par GSAP
 
 GSAP et ses plugins représentent quelques dizaines de Ko compressés, chargés
 une seule fois et mis en cache. Toutes les animations utilisent uniquement
