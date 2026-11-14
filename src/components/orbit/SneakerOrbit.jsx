@@ -1,4 +1,6 @@
 // src/components/orbit/SneakerOrbit.jsx
+// ⚠ EN RÉSERVE : n'est plus affiché sur le site (choix du propriétaire).
+// Prêt à être réutilisé avec des photos détourées (voir docs/FONCTIONNALITES.md).
 // Section "Sneakers du moment" : les paires tournent en orbite.
 // Glisser (souris ou doigt), flèches, ou clavier ← → pour tourner ;
 // clic sur la paire de devant (ou "Voir le produit") pour ouvrir sa fiche.
@@ -7,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Hand } from 'lucide-react';
 import { vitrineSneakers } from '../../data/vitrineSneakers.js';
 import { useOrbit } from '../../hooks/useOrbit.js';
-import OrbitInfo from './OrbitInfo.jsx';
+import ProduitSpotlight from '../vitrine/ProduitSpotlight.jsx';
 
 const ficheUrl = (p) => `/produit/${p.categorie}/${p.sousCategorie}/detail/${p.id}`;
 
@@ -39,7 +41,7 @@ export default function SneakerOrbit() {
 
         <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)]">
           <div className="relative z-20">
-            <OrbitInfo produit={produit} url={ficheUrl(produit)} />
+            <ProduitSpotlight produit={produit} url={ficheUrl(produit)} label="Sneakers" />
           </div>
 
           <div
