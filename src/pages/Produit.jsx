@@ -2,13 +2,20 @@ import { useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProduitCard from '../components/ProduitCard';
 import CategoryFilters from '../components/catalogue/CategoryFilters.jsx';
+import ViewToggle from '../components/catalogue/ViewToggle.jsx';
+import Vitrine from '../components/vitrine/Vitrine.jsx';
 import { produits, categories } from '../data/produits';
 import { useFlipGrid } from '../hooks/useFlipGrid.js';
+import { useCatalogueView } from '../hooks/useCatalogueView.js';
+
+// Nom lisible de la catégorie d'un produit (ex. "vetement" → "Vêtements").
+const labelFor = (p) => categories.find((c) => c.id === p.categorie)?.nom ?? '';
 
 export default function Produit() {
   const { categorie, souscategorie } = useParams();
   const navigate = useNavigate();
   const gridRef = useRef(null);
+  const [view, setView] = useCatalogueView();
 
   const catActive = categorie || 'tous';
   const sousCatActive = souscategorie || 'tous';
@@ -37,9 +44,14 @@ export default function Produit() {
       <CategoryFilters categories={categories} catActive={catActive} sousCatActive={sousCatActive}
         onCategory={handleCategory} onSubCategory={handleSubCategory} />
 
-      <section ref={gridRef} aria-live="polite">
-        <p className="sr-only">{produitsFiltres.length} produit(s) affiché(s)</p>
-        {produitsFiltres.length > 0 ? (
+      <ViewToggle value={view} onChange={setView} />
+
+      <section ref={gridRef}>
+        <p className="sr-only" aria-live="polite">{produitsFiltres.length} produit(s) affiché(s)</p>
+        {produitsFiltres.length > 0 && view === 'vitrine' ? (
+          // key : la vitrine repart du début à chaque changement de filtre
+          <Vitrine key={`${catActive}-${sousCatActive}`} produits={produitsFiltres} labelFor={labelFor} />
+        ) : produitsFiltres.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
             {produitsFiltres.map((p) => (
               <div key={p.id} data-flip-id={p.id} className="h-full">

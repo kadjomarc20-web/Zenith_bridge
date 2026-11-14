@@ -99,11 +99,39 @@ l'avion de la carte est posé à l'arrivée et les témoignages s'affichent en g
 L'image du hero a été convertie en **WebP** : **1,9 Mo → 80 Ko**, soit un
 chargement environ 24 fois plus léger.
 
+### Carrousel en orbite (en réserve)
+
+Le carrousel de sneakers en orbite (`components/orbit/SneakerOrbit.jsx`, `hooks/useOrbit.js`) n'est **plus affiché** sur le site, mais il est gardé dans le projet, prêt à être réutilisé. Pour l'afficher : `<SneakerOrbit />` dans une page.
+
+#### Ajouter une paire au carrousel en orbite
+
+L'effet « flottant » exige une photo **détourée** (fond transparent), une paire seule, sans boîte.
+
+1. Récupère une photo sur fond uni (idéalement la photo officielle du fournisseur).
+2. Supprime le fond (outil en ligne de suppression d'arrière-plan, ou `rembg` en local) et
+   exporte en **WebP transparent**, environ 640 px de large.
+3. Place le fichier dans `public/image/detoure/`.
+4. Ajoute une ligne dans `src/data/vitrineSneakers.js` : `{ id: <id du produit>, image: '/image/detoure/nom.webp' }`.
+
+Le nom et le prix sont repris automatiquement du catalogue (`data/produits.js`).
+Les 8 images actuelles ont été détourées automatiquement pour la démonstration :
+les remplacer par les photos officielles des fournisseurs donnera un rendu encore plus net.
+
 ---
 
 ## 4. Catalogue — `pages/Produit.jsx`
 
-- **Filtres** par catégorie et sous-catégorie (`components/catalogue/CategoryFilters.jsx`).
+- **Deux affichages au choix** grâce à l'interrupteur **Vitrine / Grille** (`components/catalogue/ViewToggle.jsx`).
+  Par défaut : vitrine sur mobile, grille sur ordinateur. Le choix est mémorisé dans le navigateur
+  (`hooks/useCatalogueView.js`).
+- **Vitrine qui défile** (`components/vitrine/Vitrine.jsx` + `hooks/useCoverflow.js`) : la carte du centre est
+  grande et nette, ses voisines plus petites et plus pâles, et légèrement tournées en 3D sur ordinateur.
+  Sur mobile, on glisse du doigt (défilement natif aimanté sur chaque carte). Sur ordinateur : flèches,
+  trackpad, clavier ← →, ou clic sur une carte voisine pour la centrer. Sous la carte : catégorie, nom,
+  **prix**, « Voir le produit » et « Commander » (WhatsApp pré-rempli). Fonctionne avec les photos actuelles,
+  pour tous les produits et tous les filtres.
+- **Filtres** par catégorie et sous-catégorie (`components/catalogue/CategoryFilters.jsx`). Sur mobile,
+  ils tiennent sur une ligne qui défile horizontalement et se recentre sur le filtre actif.
   L'URL change (`/produit/vetement/tshirt`), on peut donc partager un lien filtré.
 - **Réorganisation animée (Flip)** (`hooks/useFlipGrid.js`) : quand on change de
   filtre, les cartes **glissent** vers leur nouvelle place et les nouvelles
