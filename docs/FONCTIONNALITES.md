@@ -92,12 +92,27 @@ l'avion de la carte est posé à l'arrivée et les témoignages s'affichent en g
 |---|---|---|
 | **Hero** | `components/home/Hero.jsx` | Le titre apparaît **lettre par lettre**, le texte ligne par ligne, le bouton « Nous contacter » fait un petit « pop », l'image se dévoile de bas en haut puis bouge légèrement au scroll (parallax). |
 | **Chiffres clés** | `components/home/Stats.jsx` | 4 compteurs qui défilent de 0 à leur valeur. Le nombre de produits et de catégories est **calculé automatiquement** depuis le catalogue. |
+| **Sneakers du moment** | `components/orbit/SneakerOrbit.jsx` + `hooks/useOrbit.js` | Carrousel **en orbite** : les paires tournent sur une ellipse. Celle de devant est grande et nette, celles de derrière plus petites et floues. On le fait tourner **en glissant** (souris ou doigt, avec élan), avec les **flèches**, ou au **clavier** (← →). Un clic sur la paire de devant ouvre sa fiche ; le bouton « Commander » ouvre WhatsApp avec le modèle et le prix. |
 | **Notre histoire** | `pages/Home.jsx` | Apparition en douceur au scroll. |
 | **De la Chine à Abidjan** ⭐ | `components/home/RouteMap.jsx` | **L'animation signature.** Une ligne se dessine de la Chine vers la Côte d'Ivoire **au rythme du scroll**, un avion la suit en s'orientant selon la courbe, et les 3 étapes (Sourcing, Transit, Livraison) apparaissent au fur et à mesure. Si on remonte, l'avion recule. |
 | **Témoignages** | `components/home/Testimonials.jsx` | Bandeau qui **défile en continu**. Il ralentit jusqu'à s'arrêter quand on passe la souris dessus, pour laisser le temps de lire. |
 
 L'image du hero a été convertie en **WebP** : **1,9 Mo → 80 Ko**, soit un
 chargement environ 24 fois plus léger.
+
+### Ajouter une paire au carrousel en orbite
+
+L'effet « flottant » exige une photo **détourée** (fond transparent), une paire seule, sans boîte.
+
+1. Récupère une photo sur fond uni (idéalement la photo officielle du fournisseur).
+2. Supprime le fond (outil en ligne de suppression d'arrière-plan, ou `rembg` en local) et
+   exporte en **WebP transparent**, environ 640 px de large.
+3. Place le fichier dans `public/image/detoure/`.
+4. Ajoute une ligne dans `src/data/vitrineSneakers.js` : `{ id: <id du produit>, image: '/image/detoure/nom.webp' }`.
+
+Le nom et le prix sont repris automatiquement du catalogue (`data/produits.js`).
+Les 8 images actuelles ont été détourées automatiquement pour la démonstration :
+les remplacer par les photos officielles des fournisseurs donnera un rendu encore plus net.
 
 ---
 

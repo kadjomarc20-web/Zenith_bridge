@@ -8,9 +8,11 @@ import { SplitText } from 'gsap/SplitText';
 import { Flip } from 'gsap/Flip';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { Draggable } from 'gsap/Draggable';
+import { InertiaPlugin } from 'gsap/InertiaPlugin';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, Flip, DrawSVGPlugin, MotionPathPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, Flip, DrawSVGPlugin, MotionPathPlugin, Draggable, InertiaPlugin);
 
 // Réglages par défaut appliqués à toutes les animations.
 gsap.defaults({ ease: 'power3.out', duration: 0.8 });
@@ -21,4 +23,4 @@ gsap.defaults({ ease: 'power3.out', duration: 0.8 });
 export const MOTION = '(prefers-reduced-motion: no-preference)';
 export const REDUCE = '(prefers-reduced-motion: reduce)';
 
-export { gsap, ScrollTrigger, SplitText, Flip, DrawSVGPlugin, MotionPathPlugin, useGSAP };
+export { gsap, ScrollTrigger, SplitText, Flip, DrawSVGPlugin, MotionPathPlugin, Draggable, InertiaPlugin, useGSAP };

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useReveal } from '../hooks/useReveal.js';
 import Hero from '../components/home/Hero.jsx';
 import Stats from '../components/home/Stats.jsx';
+import SneakerOrbit from '../components/orbit/SneakerOrbit.jsx';
 import RouteMap from '../components/home/RouteMap.jsx';
 import Testimonials from '../components/home/Testimonials.jsx';
 
@@ -14,6 +15,7 @@ export default function Home() {
     <div ref={scope} className="space-y-16 py-6 dark:bg-black dark:text-white">
       <Hero />
       <Stats />
+      <SneakerOrbit />
 
       <section data-reveal className="max-w-3xl mx-auto text-center space-y-4 px-4">
         <h2 className="text-3xl font-bold text-slate-800 dark:text-white">Notre Histoire</h2>
