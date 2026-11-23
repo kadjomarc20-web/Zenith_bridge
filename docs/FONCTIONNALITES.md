@@ -93,11 +93,21 @@ l'avion de la carte est posé à l'arrivée et les témoignages s'affichent en g
 | **Hero** | `components/home/Hero.jsx` | Le titre apparaît **lettre par lettre**, le texte ligne par ligne, le bouton « Nous contacter » fait un petit « pop », l'image se dévoile de bas en haut puis bouge légèrement au scroll (parallax). |
 | **Chiffres clés** | `components/home/Stats.jsx` | 4 compteurs qui défilent de 0 à leur valeur. Le nombre de produits et de catégories est **calculé automatiquement** depuis le catalogue. |
 | **Notre histoire** | `pages/Home.jsx` | Apparition en douceur au scroll. |
-| **De la Chine à toute l'Afrique de l'Ouest** ⭐ | `components/home/RouteMap.jsx` + `CountryBranch.jsx` | **L'animation signature**, liée au scroll (la section reste fixe pendant qu'on défile). Une ligne se dessine de la Chine vers Abidjan et un avion la suit. À l'atterrissage, la vue **zoome sur l'Afrique de l'Ouest**, puis des **courbes en pointillés partent d'Abidjan** vers le Ghana, le Burkina Faso, le Mali, la Guinée et le Liberia, qui s'allument un à un. Si on remonte, tout se rembobine. Les pays et leurs positions (coordonnées réelles des capitales) sont dans `data/reseauAfrique.js` : ajouter un pays = ajouter une ligne. |
+| **De la Chine à toute l'Afrique de l'Ouest** ⭐ | `components/home/RouteMap.jsx` + `CountryBranch.jsx` | **L'animation signature**, liée au scroll (la section reste fixe pendant qu'on défile). Le **contour de la Chine se dessine**, puis l'avion décolle de Canton et suit la route jusqu'à Abidjan. À l'atterrissage, la caméra **zoome sur l'Afrique de l'Ouest** et le **contour de la Côte d'Ivoire se trace**. Ensuite, des **courbes en pointillés partent d'Abidjan** et chaque pays voisin (Ghana, Burkina Faso, Mali, Guinée, Liberia) **se dessine et s'allume** quand sa courbe l'atteint. Si on remonte, tout se rembobine. |
 | **Témoignages** | `components/home/Testimonials.jsx` | Bandeau qui **défile en continu**. Il ralentit jusqu'à s'arrêter quand on passe la souris dessus, pour laisser le temps de lire. |
 
 L'image du hero a été convertie en **WebP** : **1,9 Mo → 80 Ko**, soit un
 chargement environ 24 fois plus léger.
+
+### Carte animée : modifier les pays
+
+- Les pays et la position de leur nom sont dans `src/data/reseauAfrique.js`.
+- Les contours sont dans `src/data/carteGeo.js`. Ce fichier est **généré** à partir des données libres
+  **Natural Earth** (naturalearthdata.com, domaine public) par `scripts/build_geo.py` :
+  1. télécharger `ne_50m_admin_0_countries.geojson` (dépôt GitHub `nvkelso/natural-earth-vector`) ;
+  2. ajouter le code ISO du pays dans `PAYS` en haut du script (ex. `'TGO': ('togo', 0.03, 2)`) ;
+  3. lancer `python3 scripts/build_geo.py ne_50m_admin_0_countries.geojson src/data/carteGeo.js` ;
+  4. ajouter le pays dans `reseauAfrique.js` avec `contour: 'togo'`.
 
 ### Carrousel en orbite (en réserve)
 
